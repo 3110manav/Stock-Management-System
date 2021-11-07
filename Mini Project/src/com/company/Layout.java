@@ -102,6 +102,16 @@ class Layout implements ActionListener {
         private JCheckBox tnc;
         private JComboBox bxstype;
         private Container c;
+
+        int delay = 3000; // milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                alert2.setVisible(false);
+                alert1.setVisible(false);
+                alert3.setVisible(false);
+            }
+        };
+
         String data;
 
         Registration()
@@ -289,20 +299,23 @@ class Layout implements ActionListener {
                     {
                         data = "Shop Name : " + tshname.getText() + "\nOwner Name : " + towname.getText() + "\nUnique ID : " + tid.getText() + "\nShop Type : " + bxstype.getSelectedItem();
                         alert1.setText("Registration Successful !");
+                        new javax.swing.Timer(delay, taskPerformer).start();
                     }
                     else
                     {
                         alert2.setText("Please Check The Password");
+                        new javax.swing.Timer(delay, taskPerformer).start();
                     }
                 }
-                else
+                else {
                     alert3.setText("Please Accept the Terms & Condition.");
+                    new javax.swing.Timer(delay, taskPerformer).start();
+                }
                 taoutput.setText(data);
             }
 
         }
     }
-
 
     public static void main(String[] args) {
         new Layout();
